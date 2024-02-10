@@ -1,5 +1,4 @@
 import 'package:avatar_element/config/colors.dart';
-import 'package:avatar_element/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -43,30 +42,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.only(top: 60),
-                alignment: Alignment.topRight,
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Skip',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: airTribe,
-                          fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-            ),
             PageView.builder(
                 controller: _controller,
                 itemCount: _pages.length,
@@ -106,6 +81,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   );
                 }),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/homepage');
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 60),
+                alignment: Alignment.topRight,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Skip',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: airTribe,
+                          fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -129,12 +125,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     GestureDetector(
                       onTap: onLastPage
                           ? () {
-                              // Navigator.pushNamed(context, '/homepage');
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomeScreen()),
-                              );
+                              Navigator.pushNamed(context, '/homepage');
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const HomeScreen()),
+                              // );
                             }
                           : () {
                               _controller.nextPage(
