@@ -1,3 +1,5 @@
+import 'package:avatar_element/pages/detail_screen.dart';
+import 'package:avatar_element/pages/home_screen.dart';
 import 'package:avatar_element/pages/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,9 +13,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnboardingScreen(),
+      home: const OnboardingScreen(),
+      routes: {
+        '/homepage': (context) => const HomeScreen(),
+        '/detailpage': (context) => const DetailScreen()
+      },
     );
   }
 }

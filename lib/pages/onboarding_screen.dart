@@ -1,4 +1,5 @@
 import 'package:avatar_element/config/colors.dart';
+import 'package:avatar_element/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -21,7 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       'images': 'assets/character.png',
       'title': 'Explore Character Profiles',
       'desc':
-          'Discover comprehensive profiles for every major character in the Avatar series. From Aang and Katara to Zuko and Toph, learn about their backgrounds, personalities, and pivotal moments throughout their journeys.',
+          'Discover comprehensive profiles for every character in the Avatar series. learn about their backgrounds, personalities, and pivotal moments throughout their journeys.',
     },
     {
       'images': 'assets/episode.png',
@@ -42,6 +43,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 60),
+                alignment: Alignment.topRight,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Skip',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: airTribe,
+                          fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             PageView.builder(
                 controller: _controller,
                 itemCount: _pages.length,
@@ -92,8 +117,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       controller: _controller,
                       count: _pages.length,
                       effect: const ExpandingDotsEffect(
-                        dotColor: airTribe,
-                        activeDotColor: fireTribe,
+                        dotColor: Colors.white,
+                        activeDotColor: airTribe,
                       ),
                       onDotClicked: (index) => _controller.animateToPage(
                         index,
@@ -102,20 +127,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     GestureDetector(
-                        onTap: onLastPage
-                            ? () {
-                                Navigator.pushNamed(context, '/welcomepage');
-                              }
-                            : () {
-                                _controller.nextPage(
-                                    duration: const Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
-                              },
-                        child: const Text(
-                          'Next',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: airTribe),
-                        )),
+                      onTap: onLastPage
+                          ? () {
+                              // Navigator.pushNamed(context, '/homepage');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const HomeScreen()),
+                              );
+                            }
+                          : () {
+                              _controller.nextPage(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeIn);
+                            },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50)),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: airTribe,
+                          ),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
