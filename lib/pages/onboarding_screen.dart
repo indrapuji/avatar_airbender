@@ -126,11 +126,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onTap: onLastPage
                           ? () {
                               Navigator.pushNamed(context, '/homepage');
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => const HomeScreen()),
-                              // );
                             }
                           : () {
                               _controller.nextPage(

@@ -10,8 +10,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.black,
+    return Container(
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+        image: AssetImage(
+          'assets/avatar_background.jpg',
+        ),
+        fit: BoxFit.cover,
+      )),
     );
   }
 }
